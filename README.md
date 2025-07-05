@@ -1,98 +1,152 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Nest-Auth(🔐 NestJS Authentication API)
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This is a secure and minimal **authentication API** built with [NestJS](https://nestjs.com/), using **JWT**, **bcrypt**, and **cookie-based authentication**. It includes endpoints for signup, login, and retrieving authenticated user info.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+## 🚀 Features
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- 🧾 User Signup (with hashed passwords using `bcrypt`)
+- 🔐 Secure Login with JWT
+- 🍪 JWT stored in `httpOnly` cookies
+- 🔍 Authenticated user retrieval using JWT verification
+- 💡 Clean and simple code structure
 
-## Project setup
+---
 
-```bash
-$ npm install
-```
+## 📁 Project Structure (Relevant Files)
 
-## Compile and run the project
+src/
+├── app.controller.ts # Auth-related endpoints
+├── app.service.ts # Handles user creation and fetching
+├── app.module.ts # App-level config and module setup
+├── user.entity.ts # User entity definition
+.env # Environment variables
 
-```bash
-# development
-$ npm run start
 
-# watch mode
-$ npm run start:dev
+---
 
-# production mode
-$ npm run start:prod
-```
+## 📦 Tech Stack
 
-## Run tests
+- **NestJS** – Core backend framework
+- **TypeORM** – Database ORM
+- **MySQL** (or any RDBMS) – Database
+- **bcrypt** – Password hashing
+- **JWT** – Token-based authentication
+- **cookie-parser** – To read JWT from cookies
+- **dotenv / @nestjs/config** – Environment configuration
 
-```bash
-# unit tests
-$ npm run test
+---
 
-# e2e tests
-$ npm run test:e2e
+## 📮 API Endpoints
 
-# test coverage
-$ npm run test:cov
-```
+| Method | Route         | Description                    |
+|--------|---------------|--------------------------------|
+| POST   | `/api/signup` | Register a new user            |
+| POST   | `/api/login`  | Authenticate and set JWT cookie|
+| GET    | `/api/user`   | Get current authenticated user |
 
-## Deployment
+---
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+## ⚙️ Environment Configuration
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+Create a `.env` file in your root folder:
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
+```env
+DB_HOST=localhost
+DB_PORT=3306
+DB_USERNAME=root
+DB_PASSWORD=yourPassword
+DB_NAME=auth_db
+JWT_SECRET=your_jwt_secret
+🔐 JWT & Cookie Authentication Flow
+Signup:
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+Passwords are hashed with bcrypt before being saved.
 
-## Resources
+Login:
 
-Check out a few resources that may come in handy when working with NestJS:
+If credentials are valid, a JWT is created and stored in an httpOnly cookie.
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+Get User:
 
-## Support
+JWT is read from cookie and verified.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+If valid, the user’s data is returned.
 
-## Stay in touch
+📦 Installation & Running
+bash
+Copy
+Edit
+# 1. Clone the repo
+git clone https://github.com/blessedwinner66/Nest-auth.git
+cd nest-auth-api
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+# 2. Install dependencies
+npm install
 
-## License
+# 3. Set up environment
+cp .env.example .env  # create and edit your env
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+# 4. Run the server
+npm run start:dev
+🧠 Example Requests
+🔐 Signup
+http
+Copy
+Edit
+POST /api/signup
+Content-Type: application/json
+
+{
+  "name": "Test",
+  "email": "test@example.com",
+  "password": "securepassword"
+}
+🔓 Login
+http
+Copy
+Edit
+POST /api/login
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "securepassword"
+}
+On success, a JWT is set in an httpOnly cookie.
+
+👤 Get Authenticated User
+http
+Copy
+Edit
+GET /api/user
+Cookie: jwt=<your_token_here>
+🛡️ Best Practices Followed
+Passwords are never stored in plain text
+
+JWTs are stored in secure, httpOnly cookies
+
+Unauthorized access is blocked using proper error handling
+
+Configuration is abstracted to .env using @nestjs/config
+
+✅ To Improve Next
+ Add DTOs & Validation Pipes
+
+ Use @UseGuards() with AuthGuard + Passport
+
+ Add Logout route (clear cookie)
+
+ Add Swagger Documentation
+
+ Add rate limiting, user roles, and refresh tokens
+
+🧑 Author
+IMPANO Blessed Winner
+GitHub: @blessedwinner66
+LinkedIn: IMPANO Blessed Winner
+
+📄 License
+This project is open-source and available under the MIT License.
+
