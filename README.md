@@ -75,9 +75,7 @@ JWT is read from cookie and verified.
 If valid, the user’s data is returned.
 
 📦 Installation & Running
-bash
-Copy
-Edit
+
 # 1. Clone the repo
 git clone https://github.com/blessedwinner66/Nest-auth.git
 cd nest-auth-api
