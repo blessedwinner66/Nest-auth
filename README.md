@@ -77,7 +77,7 @@ If valid, the user’s data is returned.
 📦 Installation & Running
 
 # 1. Clone the repo
-git clone https://github.com/blessedwinner66/Nest-auth.git
+git clone https://github.com/blessed-winner/Nest-auth.git
 cd nest-auth-api
 
 # 2. Install dependencies
